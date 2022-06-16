@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EconomyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Annuity">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="projectId" Type="int" Nullable="false" />
+    <Property Name="initial" Type="int" Nullable="false" />
+    <Property Name="end" Type="int" Nullable="false" />
+    <Property Name="payment" Type="decimal" Precision="9" Scale="2" />
+    <Property Name="present" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="future" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+    <Property Name="flowType" Type="varchar" MaxLength="50" />
+    <Property Name="rate" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+    <Property Name="totalPeriod" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Interest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="projectId" Type="int" Nullable="false" />
+    <Property Name="initial" Type="int" Nullable="false" />
+    <Property Name="end" Type="int" Nullable="false" />
+    <Property Name="present" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="future" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="flowType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="rate" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+    <Property Name="payment" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+    <Property Name="totalPeriod" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="creation" Type="date" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Serie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="projectId" Type="int" Nullable="false" />
+    <Property Name="initial" Type="int" Nullable="false" />
+    <Property Name="end" Type="int" Nullable="false" />
+    <Property Name="downPayment" Type="decimal" Precision="9" Scale="2" />
+    <Property Name="finalPayment" Type="decimal" Precision="9" Scale="2" />
+    <Property Name="quantity" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+    <Property Name="present" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="future" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+    <Property Name="flowType" Type="varchar" MaxLength="50" />
+    <Property Name="rate" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+    <Property Name="incremental" Type="bit" Nullable="false" />
+    <Property Name="totalPeriod" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="16" />
+    <Property Name="email" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="fk_project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Serie" Type="Self.Serie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Serie">
+        <PropertyRef Name="projectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_projects">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Annuity" Type="Self.Annuity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Annuity">
+        <PropertyRef Name="projectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_projectss">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Interest" Type="Self.Interest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Interest">
+        <PropertyRef Name="projectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EconomyModelStoreContainer">
+    <EntitySet Name="Annuity" EntityType="Self.Annuity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Interest" EntityType="Self.Interest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Serie" EntityType="Self.Serie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_project" Association="Self.fk_project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Serie" EntitySet="Serie" />
+    </AssociationSet>
+    <AssociationSet Name="fk_projects" Association="Self.fk_projects">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Annuity" EntitySet="Annuity" />
+    </AssociationSet>
+    <AssociationSet Name="fk_projectss" Association="Self.fk_projectss">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Interest" EntitySet="Interest" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user" Association="Self.fk_user">
+      <End Role="User" EntitySet="User" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

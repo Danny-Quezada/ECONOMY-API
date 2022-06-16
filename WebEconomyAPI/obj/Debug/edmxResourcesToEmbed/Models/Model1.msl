@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EconomyModelStoreContainer" CdmEntityContainer="EconomyEntities">
+    <EntitySetMapping Name="Annuity">
+      <EntityTypeMapping TypeName="EconomyModel.Annuity">
+        <MappingFragment StoreEntitySet="Annuity">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="projectId" ColumnName="projectId" />
+          <ScalarProperty Name="initial" ColumnName="initial" />
+          <ScalarProperty Name="end" ColumnName="end" />
+          <ScalarProperty Name="payment" ColumnName="payment" />
+          <ScalarProperty Name="present" ColumnName="present" />
+          <ScalarProperty Name="future" ColumnName="future" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="flowType" ColumnName="flowType" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="totalPeriod" ColumnName="totalPeriod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Interest">
+      <EntityTypeMapping TypeName="EconomyModel.Interest">
+        <MappingFragment StoreEntitySet="Interest">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="projectId" ColumnName="projectId" />
+          <ScalarProperty Name="initial" ColumnName="initial" />
+          <ScalarProperty Name="end" ColumnName="end" />
+          <ScalarProperty Name="present" ColumnName="present" />
+          <ScalarProperty Name="future" ColumnName="future" />
+          <ScalarProperty Name="flowType" ColumnName="flowType" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="payment" ColumnName="payment" />
+          <ScalarProperty Name="totalPeriod" ColumnName="totalPeriod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project">
+      <EntityTypeMapping TypeName="EconomyModel.Project">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="creation" ColumnName="creation" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Serie">
+      <EntityTypeMapping TypeName="EconomyModel.Serie">
+        <MappingFragment StoreEntitySet="Serie">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="projectId" ColumnName="projectId" />
+          <ScalarProperty Name="initial" ColumnName="initial" />
+          <ScalarProperty Name="end" ColumnName="end" />
+          <ScalarProperty Name="downPayment" ColumnName="downPayment" />
+          <ScalarProperty Name="finalPayment" ColumnName="finalPayment" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="present" ColumnName="present" />
+          <ScalarProperty Name="future" ColumnName="future" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="flowType" ColumnName="flowType" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="incremental" ColumnName="incremental" />
+          <ScalarProperty Name="totalPeriod" ColumnName="totalPeriod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="EconomyModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="EconomyModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
