@@ -65,7 +65,8 @@ namespace WebEconomyAPI.Controllers
                     future = InterestDTO.future,
                     id = InterestDTO.id,
                     initial = InterestDTO.initial,
-
+                    payment=InterestDTO.payment,
+                    
                     present = InterestDTO.present,
                     rate = InterestDTO.rate,
                     totalPeriod = InterestDTO.totalPeriod,
